@@ -1,0 +1,46 @@
+header.navbar.navbar-static-top
+  .navbar-inner
+    .container
+      a.brand(href='/') UWC Final
+      nav.pull-right
+        ul.nav
+          li
+              if session.username
+                  li
+                      a(href='/logout') Exit
+                  li
+                    a(href='/logout') Exit
+              li
+                a.dropdown-toggle(data-toggle='dropdown', href='#') Registration
+                  b.caret
+                .dropdown-menu.pull-right(style='margin-right: 80px;')
+                  form.form-vertical.login-form.register(action='/registration', method='POST')
+                    .control-group
+                      label.control-label Username
+                        | :
+                      .controls
+                        input(type='text', name='username', placeholder='Username')
+                    .control-group
+                      label.control-label Password
+                        | :
+                      .controls
+                        input(type='password', name='password', placeholder='Password')
+                    .control-group
+                      .controls
+                        button.btn.btn-primary(type='submit') Registration
+            li.open
+              a.dropdown-toggle(data-toggle='dropdown', href='#') Login
+                b.caret
+              .dropdown-menu.pull-right
+                form.form-vertical.login-form.login(action='/login', method='POST')
+                  .control-group
+                    label.control-label Username
+                      | :
+                    .controls
+                      input(type='text', name='username', placeholder='Username')
+                  .control-group
+                    label.control-label Password
+                      | :
+                    .controls
+                      input(type='password', name='password', placeholder= 'Password')
+                      button.btn.btn-primary(type='submit') Login
