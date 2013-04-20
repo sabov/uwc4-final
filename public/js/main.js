@@ -5,24 +5,29 @@ require.config({
         validator : '/js/lib/jquery.validate.min',
         cookie : '/js/lib/jquery.cookie',
         bootstrap  : '/js/lib/bootstrap',
+        bootstrapTree: '/js/lib/bootstrap-tree',
         less       : '/js/lib/less-1.3.1.min',
 
         /*    Application    */
         i18n   : '/js/app/i18n',
-        app    : '/js/app/app',
+        app    : '/js/app/app'
     },
 
     shim: {
         bootstrap :  {
             deps : ['jquery']
         },
+        bootstrapTree: {
+            deps : ['bootsptrap']
+        },
         app : {
             deps : [
                 'bootstrap',
+                'bootstrapTree',
                 'validator',
                 'i18n',
                 'less',
-                'cookie',
+                'cookie'
             ]
         },
         validator : {
