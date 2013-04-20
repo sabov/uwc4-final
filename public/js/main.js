@@ -18,7 +18,7 @@ require.config({
             deps : ['jquery']
         },
         bootstrapTree: {
-            deps : ['bootsptrap']
+            deps : ['bootstrap']
         },
         app : {
             deps : [
