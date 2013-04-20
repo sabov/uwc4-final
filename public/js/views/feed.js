@@ -17,7 +17,8 @@ define([
         template : _.template(mainTpl),
 
         events: {
-            'click a': 'setActive'
+            'click a': 'setActive',
+            'click .save-btn' : 'addFeed'
         },
 
         initialize: function() {
@@ -38,6 +39,21 @@ define([
             this.$el.find('li').removeClass('active');
             curr.closest('li').addClass('active');
 
+        },
+
+        addFeed: function() {
+            var url  = this.$el.find('.feed-url').val();
+            var r = /^(ftp|http|https):\/\/[^ "]+$/;
+            if(r.test(url)) {
+                var feed = new FeedModel({
+                    url: url
+                });
+                feed.save();
+                console.log('olol');
+                this.$el.find('.modal').modal('hide');
+            } else {
+                this.$el.find('.control-group').addClass('error');
+            }
         }
 
     });

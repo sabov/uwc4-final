@@ -1,6 +1,28 @@
+<a class="btn btn-primary btn-block" href="#add-modal" data-toggle="modal">ADD
+    NEW FEED</a>
 <ul class="nav nav-list">
     <li class="nav-header">Your Feeds</li>
     <% _.each(feeds, function(feed) {  %>
         <li><a href="#/feeds/<%= feed.get('id') %>"><%= feed.get('title') %></a></li>
     <% }); %>
 </ul>
+<div class="modal hide fade new-feed" id="add-modal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Add Feed</h3>
+  </div>
+  <div class="modal-body">
+      <form action="">
+          <div class="control-group">
+              <label for="">Url</label>
+              <div class="controls">
+                  <input type="text" class="feed-url"/>
+              </div>
+          </div>
+      </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn " data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary save-btn">Add</button>
+  </div>
+</div>

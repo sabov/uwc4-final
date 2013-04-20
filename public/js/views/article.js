@@ -4,17 +4,17 @@ define([
     'backbone',
 
     'collections/articles',
+    'models/feed',
 
     'text!templates/articles.html'
 
-], function($, _, Backbone, ArticlesCollection,  mainTpl){
+], function($, _, Backbone, ArticlesCollection,  FeedModel, mainTpl){
 
     return Backbone.View.extend({
 
         el : $( '.articles' ),
 
         template : _.template(mainTpl),
-
 
         initialize: function() {
             var id = this.options.id;
@@ -26,16 +26,12 @@ define([
         },
 
         render: function() {
-            console.log(this.articles.models);
-            console.log(this.$el);
-
 
             this.$el.html(this.template({ 
                 articles: this.articles.models
             }));
             return this;
         }
-
     });
 
 });
