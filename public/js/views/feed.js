@@ -16,6 +16,9 @@ define([
 
         template : _.template(mainTpl),
 
+        events: {
+            'click a': 'setActive'
+        },
 
         initialize: function() {
             this.feeds = new FeedCollection();
@@ -29,6 +32,12 @@ define([
                 feeds: this.feeds.models
             }));
             return this;
+        },
+        setActive: function(e) {
+            var curr = $(e.currentTarget);
+            this.$el.find('li').removeClass('active');
+            curr.closest('li').addClass('active');
+
         }
 
     });
