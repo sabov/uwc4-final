@@ -1,7 +1,16 @@
-<div>
-    <ul>
-        <% _.each(feedsItems, function(item) {  %>
-            <li><a href="#/feed/<%= item.get('url') %>"><%= feed.get('title') %></a></li>
-        <% }); %>
-    </ul>
-</div>
+<ul class="articles">
+    <% _.each(articles, function(article) {  %>
+    <li>
+        <h2>
+            <%= article.get('title') %>
+        </h2>
+        <p>
+            <%= article.get('description') %>
+        </p>
+        <span class="light">
+            Author - 
+            <%= article.get('author') %>
+        </span>
+    </li>
+    <% }); %>
+</ul>

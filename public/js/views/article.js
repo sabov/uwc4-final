@@ -18,8 +18,6 @@ define([
 
         initialize: function() {
             var id = this.options.id;
-            console.log('id')
-            console.log(id)
             this.articles = new ArticlesCollection({
                 feedId: id
             });
@@ -28,9 +26,12 @@ define([
         },
 
         render: function() {
+            console.log(this.articles.models);
+            console.log(this.$el);
+
 
             this.$el.html(this.template({ 
-                feedItems: this.feedsItems.models
+                articles: this.articles.models
             }));
             return this;
         }
