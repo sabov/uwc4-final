@@ -4,7 +4,7 @@ module.exports = (function () {
         port: '',
         user: 'root',
         password: '',
-        database: 'gallery'
+        database: 'rss'
     };
     return params
 })();
