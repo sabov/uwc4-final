@@ -4,14 +4,14 @@ module.exports = function(grunt) {
         serverFile: 'app.js',
         shell: {
           nodemon_dev: {
-            command: 'nodemon <%= serverFile %>',
+            command: 'node <%= serverFile %>',
             options: {
               stdout: true,
               stderr: true
             }
           },
           nodemon_prod: {
-            command: 'nodemon <%= serverFile %> prod',
+            command: 'node <%= serverFile %> prod',
             options: {
               stdout: true,
               stderr: true

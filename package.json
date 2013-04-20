@@ -12,7 +12,8 @@
     "connect": "~2.7.6",
     "mysql": "~2.0.0-alpha7",
     "xtend": "~2.0.3",
-    "forever": "~0.10.0"
+    "forever": "~0.10.0",
+    "feedparser": "~0.15.2"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
