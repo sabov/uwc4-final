@@ -1,13 +1,7 @@
 module.exports = (function () {
     var mysql = require('mysql'),
-        conf = require('../config/db'),
-        client = mysql.createClient();
-
-    client.host = conf.get('host');
-    client.port = conf.get('port');
-    client.user = conf.get('user');
-    client.password = conf.get('password');
-    client.database = conf.get('database');
+        dbConfig = require('../config/db'),
+        client = mysql.createConnection(dbConfig);
 
     var _prepareSql = function (sql, params) {
         var reForArray = /\$(\d+)/gi;

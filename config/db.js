@@ -6,9 +6,5 @@ module.exports = (function () {
         password: '',
         database: 'gallery'
     };
-    return {
-        get: function (name, defaultValue) {
-            return params[name] || defaultValue;
-        }
-    }
+    return params
 })();

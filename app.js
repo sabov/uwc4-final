@@ -15,6 +15,7 @@ var app = express();
 
 var MemStore = require('connect/lib/middleware/session/memory');
 
+var env = process.argv[2] || process.env.NODE_ENV || 'development'
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
@@ -27,14 +28,15 @@ app.configure(function(){
   app.use(express.session({store: MemStore({
     reapInterval:  6000 * 10
   })}));
-    app.use(function (req, res, next) {
-        console.log(req.session.username)
-        res.locals.session = req.session;
-        res.locals.title = 'Gallery';
-        res.locals.message = '';
-        res.role = req.session.role || '';
-        next();
-    });
+  app.use(function (req, res, next) {
+      console.log(req.session.username)
+      res.locals.session = req.session;
+      res.locals.env = env;
+      res.locals.title = 'Gallery';
+      res.locals.message = '';
+      res.role = req.session.role || '';
+      next();
+  });
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
 });
