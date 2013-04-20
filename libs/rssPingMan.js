@@ -1,12 +1,13 @@
 module.exports = (function(){
 	var FeedParser = require('feedparser')
-  		// , feed = '../test/feeds/rss2sample.xml'
-		, modelFeed = require('../models/model_feed');
+		, modelFeed = require('../models/model_feed')
+		, fs = require('fs');
 
 
-	var updateFeeds function () {
-		getAllFeeds(function (feeds) {
-			feeds.forEach(function (feed) {
+	var updateFeeds = function () {
+		modelFeed.getAllFeed({}, function (result) {
+			console.log (result)
+			result.data.forEach(function (feed) {
 				updateFeed(feed);
 			})
 		});
@@ -45,8 +46,8 @@ module.exports = (function(){
 	return {
 		ping: function (interval) {
 			interval = interval || 1000 * 60 * 60 //a hour
+			updateFeeds()
 			setInterval(function () {
-				console.log('update feeds');
 				updateFeeds()
 			}, interval)
 		}
