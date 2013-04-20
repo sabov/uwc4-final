@@ -1,5 +1,6 @@
 <a class="btn btn-primary btn-block" href="#add-modal" data-toggle="modal">ADD
     NEW FEED</a>
+<button class="btn btn-block refresh">REFRESH</button>
 <ul class="nav nav-list">
     <li class="nav-header">Your Feeds</li>
     <% _.each(feeds, function(feed) {  %>
@@ -17,6 +18,12 @@
               <label for="">Url</label>
               <div class="controls">
                   <input type="text" class="feed-url"/>
+              </div>
+          </div>
+          <div class="control-group">
+              <label for="">Title</label>
+              <div class="controls">
+                  <input type="text" class="feed-title"/>
               </div>
           </div>
       </form>

@@ -14,6 +14,10 @@ define([
 
         el : $( '.articles' ),
 
+        events: {
+            'click .refresh-article' : 'refresh'
+        },
+
         template : _.template(mainTpl),
 
         initialize: function() {
@@ -31,6 +35,10 @@ define([
                 articles: this.articles.models
             }));
             return this;
+        },
+
+        refresh: function() {
+            this.articles.fetch();
         }
     });
 

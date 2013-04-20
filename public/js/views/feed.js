@@ -18,7 +18,8 @@ define([
 
         events: {
             'click a': 'setActive',
-            'click .save-btn' : 'addFeed'
+            'click .save-btn' : 'addFeed',
+            'click .refresh' : 'refresh'
         },
 
         initialize: function() {
@@ -42,19 +43,27 @@ define([
         },
 
         addFeed: function() {
-            var url  = this.$el.find('.feed-url').val();
+            var url   = this.$el.find('.feed-url').val();
+            var title = this.$el.find('.feed-title').val();
             var r = /^(ftp|http|https):\/\/[^ "]+$/;
             if(r.test(url)) {
                 var feed = new FeedModel({
-                    url: url
+                    url: url,
+                    title: title
                 });
                 feed.save();
-                console.log('olol');
                 this.$el.find('.modal').modal('hide');
+                this.feeds.fetch();
             } else {
                 this.$el.find('.control-group').addClass('error');
             }
+        },
+
+        refresh: function() {
+            this.feeds.fetch();
+            $('.refresh-article').click();
         }
+
 
     });
 
