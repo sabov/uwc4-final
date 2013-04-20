@@ -19,9 +19,30 @@ Isaac Schlueter's [sax](https://github.com/isaacs/sax-js) parser.
 
 ```bash
 git clone
+load our sql dump-file 'reader'
 npm install
 grunt dev||prod
 ```
+
+## Description
+
+
+Для получения информации о своих лентах реализовано like rest API
+
+example
+
+get /feed
+post /feed
+delete /feed
+
+get /article
+
+после запуска приложения сервер скачивает articles пользователя в зависимости от лент
+на которые он подписан и далее поддерживает базу в актуальном состоянии, синхронизируя ее каждый
+определенный промежуток времени. При добавлении новыx лент, при следующей синхронизации их articles
+будут загружены. Ленты могут находиться в разных категориях(папках). Ленты можно удалять.
+Планируется live update новых артиклов на клиенте посредством soket io
+
 
 ## License
 
