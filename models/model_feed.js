@@ -4,11 +4,12 @@ var mysql = require('../libs/mysql')
 module.exports = (function () {
     var sql = {
         createFeed: 'INSERT INTO feed (url, username, title, dir) VALUES (:url, :username, :title, :dir)',
-        createArticle: 'INSERT INTO article (feed_id, author, description, is_readed, title) VALUES (:feed_id, :author, :description, :is_readed, :title)',
+        createArticle: 'INSERT INTO article (feed_id, author, description, is_readed, title, guid) VALUES ( :feed_id, :author, :description, :is_readed, :title, :guid)',
         deleteFeedById: 'delete FROM feed WHERE id = :id',
         getFeedByUser: 'SELECT * FROM feed WHERE username = :username',
         getFeed: 'SELECT * FROM feed',
-        getArticleByFeedId: 'SELECT * FROM article WHERE feed_id = :feed_id'
+        getArticleByFeedId: 'SELECT * FROM article WHERE feed_id = :feed_id',
+        checkArticle: 'SELECT count(*) as count from article WHERE guid = :guid'
     };
 
     var _getFeedByUser = function(params, callback) {
@@ -24,6 +25,15 @@ module.exports = (function () {
                     data: res
                 });
             }
+        });
+    };
+
+    var _checkArticle = function(params, callback) {
+        mysql.query(sql.checkArticle, params, function (res) {
+            callback({
+                success: true,
+                data: res[0].count > 0
+            });
         });
     };
 
@@ -114,6 +124,7 @@ module.exports = (function () {
         deleteFeedById: _deleteFeedById,
         getArticleByFeedId: _getArticleByFeedId,
         createArticle: _createArticle,
-        getAllFeed: _getFeed
+        getAllFeed: _getFeed,
+        checkArticle: _checkArticle
     };
 })();

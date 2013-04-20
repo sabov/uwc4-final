@@ -17,7 +17,7 @@ var app = express();
 
 var MemStore = require('connect/lib/middleware/session/memory');
 
-var env = process.argv[2] || process.env.NODE_ENV || 'development'
+var env = process.env.NODE_ENV || 'development'
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
@@ -31,7 +31,6 @@ app.configure(function(){
     reapInterval:  6000 * 10
   })}));
   app.use(function (req, res, next) {
-      console.log(req.session)
       res.locals.session = req.session;
       res.locals.env = env;
       res.locals.title = 'Gallery';

@@ -7,9 +7,10 @@ module.exports = (function(){
 
 	var updateFeeds = function () {
 		modelFeed.getAllFeed({}, function (result) {
-			console.log (result)
 			result.data.forEach(function (feed) {
-				updateFeed(feed);
+				updateFeed(feed, function () {
+					console.log('finish parsing');
+				});
 			})
 		});
 	}
@@ -31,14 +32,19 @@ module.exports = (function(){
 		request(feed.url)
 		  .pipe(new FeedParser())
 		  .on('error', function (error) {
-		    // console.error(error);
+		    console.error(error);
 		  })
 		  .on('meta', function (meta) {
-		    // console.log('===== %s =====', meta.title);
+		    console.log('===== %s =====', meta.title);
 		  })
 		  .on('article', function(article){
-		  	modelFeed.createArticle(feed, function (data) {
-		  		console.log(data);
+		  	article.feed_id = feed.id;
+		  	modelFeed.checkArticle(article, function (result) {
+		  		if (!result.data) { //if not exist
+				  	modelFeed.createArticle(article, function (data) {
+				  		console.log('new article created');
+				  	})
+		  		}
 		  	})
 		  })
 		  .on('end', function () {
@@ -48,7 +54,7 @@ module.exports = (function(){
 
 	return {
 		ping: function (interval) {
-			interval = interval || 1000 * 60 * 60 //a hour
+			interval = interval || 1000 * 60 // 1 min
 			updateFeeds()
 			setInterval(function () {
 				updateFeeds()
