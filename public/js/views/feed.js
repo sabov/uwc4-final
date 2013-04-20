@@ -3,9 +3,12 @@ define([
     'underscore',
     'backbone',
 
+    'collections/feeds',
+    'models/feed',
+
     'text!templates/feed-item.html'
 
-], function($, _, Backbone,  mainTpl){
+], function($, _, Backbone, FeedCollection, FeedModel,  mainTpl){
 
     return Backbone.View.extend({
 
@@ -15,6 +18,14 @@ define([
 
 
         initialize: function() {
+            var feeds = new FeedCollection();
+            feeds.on('sync', function() {
+                console.log('args');
+                console.log(arguments);
+                console.log(feeds);
+
+            });
+            feeds.fetch();
 
 
         },
@@ -22,7 +33,7 @@ define([
         render: function() {
 
             console.log('render');
-            this.$el.html(mainTpl);
+            //this.$el.html(mainTpl);
             return this;
         }
 

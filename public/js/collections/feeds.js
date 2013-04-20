@@ -7,6 +7,7 @@ define([
 ], function(_, Backbone, feedModel){
 
     return Backbone.Collection.extend({
-        model : feedModel
+        model : feedModel,
+        url: 'feed'
     });
 });
