@@ -1,6 +1,9 @@
 require.config({
     paths: {
         /*    Libraries    */
+
+        bootstrapTree: '/js/lib/bootstrap-tree',
+
         jquery     : '/js/components/jquery/jquery',
         validator  : '/js/components/jquery.validation/jquery.validate',
         cookie     : '/js/components/jquery.cookie/jquery.cookie',
@@ -24,9 +27,13 @@ require.config({
         bootstrap :  {
             deps : ['jquery']
         },
+        bootstrapTree: {
+            deps : ['bootstrap']
+        },
         app : {
             deps : [
                 'bootstrap',
+                'bootstrapTree',
                 'validator',
                 'less',
                 'cookie'

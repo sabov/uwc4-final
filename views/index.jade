@@ -1,6 +1,23 @@
 extends layout
 
 block content
-  .container
-    .well
-      h1 Hello World!
+  .container-fluid
+    .row-fluid
+      .span3
+        .well
+          ul.tree
+            li
+              a.tree-toggle(href='#', role='branch', data-toggle='branch', data-value='Rss_list') Rss list
+              ul.branch.in
+                li
+                  a(href='#', role='leaf') First rss
+                li
+                  a(href='#', role='leaf') Second rss
+            li
+              a.tree-toogle.closed(href='#', role='branch', data-toggle='branch', data-value='Featured') Featured
+      .span9
+          .container-fluid.news
+            b New item new news news news news news
+            span.time 5 hours ago
+          .container-fluid.news New item new news news news news news
+            span.time 7 hours ago
