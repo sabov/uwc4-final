@@ -6,34 +6,28 @@ define([
     'collections/feeds',
     'models/feed',
 
-    'text!templates/feed-item.html'
+    'text!templates/feeds.html'
 
 ], function($, _, Backbone, FeedCollection, FeedModel,  mainTpl){
 
     return Backbone.View.extend({
 
-        el : $( 'body' ),
+        el : $( '.feed-list' ),
 
         template : _.template(mainTpl),
 
 
         initialize: function() {
-            var feeds = new FeedCollection();
-            feeds.on('sync', function() {
-                console.log('args');
-                console.log(arguments);
-                console.log(feeds);
-
-            });
-            feeds.fetch();
-
-
+            this.feeds = new FeedCollection();
+            this.feeds.on('sync', _.bind(this.render, this));
+            this.feeds.fetch();
         },
 
         render: function() {
 
-            console.log('render');
-            //this.$el.html(mainTpl);
+            this.$el.html(this.template({ 
+                feeds: this.feeds.models
+            }));
             return this;
         }
 

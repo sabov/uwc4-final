@@ -64,7 +64,6 @@ define([
     //*****************************
 
     var initialize = function() {
-        console.log('olo');
         new FeedConroller();
         Backbone.history.start();
     };
