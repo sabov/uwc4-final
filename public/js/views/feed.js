@@ -44,12 +44,10 @@ define([
 
         addFeed: function() {
             var url   = this.$el.find('.feed-url').val();
-            var title = this.$el.find('.feed-title').val();
             var r = /^(ftp|http|https):\/\/[^ "]+$/;
             if(r.test(url)) {
                 var feed = new FeedModel({
                     url: url,
-                    title: title
                 });
                 feed.save();
                 this.$el.find('.modal').modal('hide');
