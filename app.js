@@ -33,7 +33,7 @@ app.configure(function(){
   app.use(function (req, res, next) {
       res.locals.session = req.session;
       res.locals.env = env;
-      res.locals.title = 'Gallery';
+      res.locals.title = 'RssReader';
       res.locals.message = '';
       res.role = req.session.role || '';
       next();

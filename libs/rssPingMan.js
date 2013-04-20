@@ -15,14 +15,6 @@ module.exports = (function(){
 		});
 	}
 
-	var getAllFeeds = function(callback) {
-		feed.getAllFeed({}, function (result) {
-			if (result.success) {
-				callback(result.data)
-			}
-		})
-	}
-
 	var getUserFeeds = function (callback) {
 
 	}

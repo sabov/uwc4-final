@@ -19,9 +19,11 @@ Isaac Schlueter's [sax](https://github.com/isaacs/sax-js) parser.
 
 ```bash
 git clone
-load our sql dump-file 'reader'
+load our sql dump-file 'rss'
 npm install
-grunt dev||prod
+cd public/js
+bower install
+grunt run
 ```
 
 ## Description
@@ -32,35 +34,26 @@ grunt dev||prod
 example
 
 get /feed
+
 post /feed
+
 delete /feed
 
 get /article
 
-после запуска приложения сервер скачивает articles пользователя в зависимости от лент
+После запуска приложения сервер скачивает articles пользователя в зависимости от лент
 на которые он подписан и далее поддерживает базу в актуальном состоянии, синхронизируя ее каждый
 определенный промежуток времени. При добавлении новыx лент, при следующей синхронизации их articles
-будут загружены. Ленты могут находиться в разных категориях(папках). Ленты можно удалять.
-Планируется live update новых артиклов на клиенте посредством soket io
+будут загружены.
+
+итого:
+Регистрация/вход в сервис
+Подписка/отписка на RSS фиды
+Кнопка для проверки обновлений по фидам
+
+
 
 
 ## License
 
 Copyright (c) 2013 110A uwcua
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the 'Software'), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

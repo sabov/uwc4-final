@@ -18,25 +18,9 @@ module.exports = function(grunt) {
             }
           }
         },
-        concat: {
-            options: {
-              separator: ';'
-            },
-            dist: {
-              src: [
-                'public/js/lib/jquery-1.8.2.js',
-                'public/js/lib/*.js',
-                'public/js/app/i18n.js',
-                'public/js/app/app.js'
-              ],
-              dest: 'public/js/built.js'
-            }
-        }
     });
 
     grunt.loadNpmTasks('grunt-shell')
-    grunt.loadNpmTasks('grunt-contrib-concat');
 
-    grunt.registerTask('dev', ['shell:nodemon_dev']);
-    grunt.registerTask('prod', ['concat', 'shell:nodemon_prod']);
+    grunt.registerTask('run', ['shell:nodemon_dev']);
 };

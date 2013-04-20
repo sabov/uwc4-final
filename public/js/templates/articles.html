@@ -7,8 +7,11 @@
         <p>
             <%= article.get('description') %>
         </p>
+        <p>
+            <a href="<%= article.get('guid') %>"><%= article.get('title') %></a>
+        </p>
         <span class="light">
-            Author - 
+            Author -
             <%= article.get('author') %>
         </span>
     </li>
