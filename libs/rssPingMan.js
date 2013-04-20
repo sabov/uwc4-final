@@ -1,6 +1,7 @@
 module.exports = (function(){
 	var FeedParser = require('feedparser')
 		, modelFeed = require('../models/model_feed')
+		, request = require('request')
 		, fs = require('fs');
 
 
@@ -27,16 +28,18 @@ module.exports = (function(){
 
 	var updateFeed = function (feed, callback) {
 		callback = callback || function(){}
-		fs.createReadStream(feed.url)
+		request(feed.url)
 		  .pipe(new FeedParser())
 		  .on('error', function (error) {
-		    console.error(error);
+		    // console.error(error);
 		  })
 		  .on('meta', function (meta) {
-		    console.log('===== %s =====', meta.title);
+		    // console.log('===== %s =====', meta.title);
 		  })
 		  .on('article', function(article){
-		    console.log('Got article: %s', article.title || article.description);
+		  	modelFeed.createArticle(feed, function (data) {
+		  		console.log(data);
+		  	})
 		  })
 		  .on('end', function () {
 		  	callback()

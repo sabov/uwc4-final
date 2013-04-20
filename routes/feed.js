@@ -8,7 +8,7 @@ exports.getFeedByUser = function (req, res) {
     var params = req.body;
     params.username = req.session.username
     modelFeed.getFeedByUser(params, function (result) {
-    	res.json(result);
+    	res.json(result.data);
     });
 };
 
@@ -32,7 +32,7 @@ exports.getArticleByFeedId = function (req, res) {
     var params = req.query;
     params.username = req.session.username
     modelFeed.getArticleByFeedId(params, function (result) {
-    	res.json(result);
+    	res.json(result.data);
     });
 };
 
