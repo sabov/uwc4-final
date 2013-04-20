@@ -58,6 +58,12 @@ app.get('/feed', feed.getFeedByUser);
 app.post('/feed', feed.createFeed);
 app.delete('/feed', feed.deleteFeedById);
 
+/* Artickes */
+
+//feed_id
+app.get('/article', feed.getArticleByFeedId)
+app.post('/article', feed.createArticle)
+
 app.get('/', routes.index);
 app.get('/users', user.list);
 

@@ -27,3 +27,19 @@ exports.deleteFeedById = function (req, res) {
     	res.json(result);
     });
 };
+
+exports.getArticleByFeedId = function (req, res) {
+    var params = req.query;
+    params.username = req.session.username
+    modelFeed.getArticleByFeedId(params, function (result) {
+    	res.json(result);
+    });
+};
+
+exports.createArticle = function (req, res) {
+    var params = req.body;
+    params.username = req.session.username
+    modelFeed.createArticle(params, function (result) {
+    	res.json(result);
+    });
+};
