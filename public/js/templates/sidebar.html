@@ -1,0 +1,20 @@
+<ul class="nav nav-tabs nav-stacked">
+
+    <% _.each(navigation, function(navigation1) { %>
+
+    <li class="nav-header"><%= navigation1.title %></li>
+
+        <% _.each(navigation1.items, function(navigation2) { %>
+
+        <li class="nav-item
+            <%= navigation2.active ? ' active' : '' %>
+            <%= navigation2.class ? navigation2.class : '' %>
+        ">
+            <a href="<%= navigation2.url %>"><%= navigation2.title %></a>
+        </li>
+
+        <% }); %>
+
+    <% }); %>
+
+</ul>

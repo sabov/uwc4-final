@@ -1,16 +1,26 @@
 require.config({
     paths: {
         /*    Libraries    */
-        jquery     : '/js/lib/jquery-1.8.2',
-        validator : '/js/lib/jquery.validate.min',
-        cookie : '/js/lib/jquery.cookie',
-        bootstrap  : '/js/lib/bootstrap',
+
         bootstrapTree: '/js/lib/bootstrap-tree',
-        less       : '/js/lib/less-1.3.1.min',
+
+        jquery     : '/js/components/jquery/jquery',
+        validator  : '/js/components/jquery.validation/jquery.validate',
+        cookie     : '/js/components/jquery.cookie/jquery.cookie',
+        less       : '/js/components/less.js/dist/less-1.3.3.min',
+        underscore : '/js/components/underscore/underscore',
+        backbone   : '/js/components/backbone/backbone',
+        text       : '/js/components/requirejs-text/text',
+        bootstrap  : '/js/components/bootstrap.css/js/bootstrap',
+        //model_binder : '/js/vendor/Backbone.ModelBinder',
+        //validation : '/js/vendor/backbone-validation-amd',
+
 
         /*    Application    */
-        i18n   : '/js/app/i18n',
-        app    : '/js/app/app'
+        app    : '/js/app',
+
+        templates: '/js/templates',
+        views: '/js/views'
     },
 
     shim: {
@@ -25,7 +35,6 @@ require.config({
                 'bootstrap',
                 'bootstrapTree',
                 'validator',
-                'i18n',
                 'less',
                 'cookie'
             ]
@@ -33,13 +42,26 @@ require.config({
         validator : {
             deps : ['jquery']
         },
-        i18n : {
-            deps : ['jquery', 'cookie']
-        },
         cookie : {
             deps : ['jquery']
+        },
+        backbone: {
+            deps: ['underscore', 'jquery'],
+            exports: 'Backbone'
+        },
+        underscore: {
+            exports: '_'
+        },
+        common : {
+            deps : ['backbone']
+        },
+        jquery_cookie: {
+            deps: ['jquery']
         }
+
     },
     urlArgs: "bust=" +  (new Date()).getTime()
 });
-require(['app']);
+require(['app'], function(app) {
+    app.initialize();
+});
