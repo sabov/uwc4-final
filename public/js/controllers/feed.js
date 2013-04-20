@@ -4,7 +4,8 @@ define([
     'underscore',
     'backbone',
 
-    'views/feed'
+    'views/feed',
+    'views/article'
 
 ], function(
 
@@ -12,7 +13,8 @@ define([
     _,
     Backbone,
 
-    FeedListView
+    FeedView,
+    ArticleView
 
 ) {
 
@@ -20,20 +22,26 @@ define([
 
         routes: {
             'feeds' : 'feedList',
+            'feeds/:id' : 'articleList',
             '*a' : 'feedList'
         },
 
-        feedListView         : new FeedListView(),
+        feedView      : new FeedView(),
 
         initialize : function() {
-            console.log('init');
-            console.log(this);
         },
 
         feedList: function() {
-            console.log('work');
-            console.log(this);
             this.feedListView.render();
+        },
+        articleList: function(id) {
+            console.log('woeee');
+            console.log(this);
+            console.log(arguments);
+
+            var articleList = new ArticleView({
+                id: id
+            });
         },
 
         defaultAction: function(actions) {

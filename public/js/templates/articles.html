@@ -1,0 +1,7 @@
+<div>
+    <ul>
+        <% _.each(feedsItems, function(item) {  %>
+            <li><a href="#/feed/<%= item.get('url') %>"><%= feed.get('title') %></a></li>
+        <% }); %>
+    </ul>
+</div>
