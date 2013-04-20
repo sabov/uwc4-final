@@ -10,6 +10,7 @@ var express = require('express')
   , user = require('./routes/user')
   , http = require('http')
   , mysql = require('./libs/mysql')
+  , rssMan = require('./libs/rssPingMan')
   , path = require('path');
 
 var app = express();
@@ -66,6 +67,8 @@ app.post('/article', feed.createArticle)
 
 app.get('/', routes.index);
 app.get('/users', user.list);
+
+rssMan.ping();
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

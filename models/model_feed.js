@@ -6,13 +6,29 @@ module.exports = (function () {
         createFeed: 'INSERT INTO feed (url, username, title, dir) VALUES (:url, :username, :title, :dir)',
         createArticle: 'INSERT INTO article (feed_id, author, description, is_readed, title) VALUES (:feed_id, :author, :description, :is_readed, :title)',
         deleteFeedById: 'delete FROM feed WHERE id = :id',
-        getFeedsByUser: 'SELECT * FROM feed WHERE username = :username',
-        getFeeds: 'SELECT * FROM feeds',
+        getFeedByUser: 'SELECT * FROM feed WHERE username = :username',
+        getFeed: 'SELECT * FROM feed',
         getArticleByFeedId: 'SELECT * FROM article WHERE feed_id = :feed_id'
     };
 
     var _getFeedByUser = function(params, callback) {
-        mysql.query(sql.getFeedsByUser, params, function (res) {
+        mysql.query(sql.getFeedByUser, params, function (res) {
+            if (!res.length) {
+                callback({
+                    success: false,
+                    message: 'Feeds not found'
+                });
+            } else {
+                callback({
+                    success: true,
+                    data: res
+                });
+            }
+        });
+    };
+
+    var _getFeed = function(params, callback) {
+        mysql.query(sql.getFeed, params, function (res) {
             if (!res.length) {
                 callback({
                     success: false,
@@ -97,6 +113,7 @@ module.exports = (function () {
         getFeedByUser: _getFeedByUser,
         deleteFeedById: _deleteFeedById,
         getArticleByFeedId: _getArticleByFeedId,
-        createArticle: _createArticle
+        createArticle: _createArticle,
+        getAllFeed: _getFeed
     };
 })();
